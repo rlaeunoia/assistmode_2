@@ -1,0 +1,648 @@
+.element {
+    background-color: #ffffff;
+    width: 100%;
+    min-width: 1920px;
+    min-height: 1080px;
+    position: relative;
+}
+.element .STAGE {
+    position: absolute;
+    width: calc(100% - 1725px);
+    top: 49px;
+    left: 50px;
+    height: 156px;
+}
+.element .vector {
+    position: absolute;
+    width: calc(100% - 152px);
+    top: 88px;
+    left: 0;
+    height: 68px;
+    object-fit: cover;
+}
+.element .img {
+    width: calc(100% - 162px);
+    top: 86px;
+    left: 50px;
+    height: 70px;
+    position: absolute;
+    object-fit: cover;
+    }
+.element .vector-2 {
+    width: calc(100% - 165px);
+    top: 1px;
+    left: 165px;
+    height: 68px;
+    position: absolute;
+    object-fit: cover;
+}
+.element .vector-3 {
+    width: calc(100% - 156px);
+    top: 0;
+    left: 120px;
+    height: 69px;
+    position: absolute;
+    object-fit: cover;
+}
+.element .vector-4 {
+    width: calc(100% - 148px);
+    top: 1px;
+    left: 72px;
+    height: 68px;
+    position: absolute;
+    object-fit: cover;
+}
+.element .vector-5 { 
+    width: calc(100% - 159px);
+    top: 1px;
+    left: 42px;
+    height: 68px;
+    position: absolute;
+    object-fit: cover;
+}
+.element .vector-6 {
+    width: calc(100% - 158px);
+    top: 0;
+    left: 4px;
+    height: 69px;
+    position: absolute;
+    object-fit: cover;
+}
+.stage-root > .ellipse {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    background: linear-gradient(
+      to right,
+      #ffffff 0 50%,
+      #121212 50% 100%
+    );      
+    transform: translate(-50%, -50%);
+    z-index: 5;          
+}
+.element .frame {
+    position: absolute;
+    top: 968px;
+    left: 50px;
+    width: 1820px;
+    height: 62px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 슬라이드 아래 반전 레이어 */
+.frame .ai-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;                        
+    background: #ffffff;
+    mix-blend-mode: difference;       
+    pointer-events: none;
+    z-index: 1;
+  }
+  .element .frame .text-wrapper,
+  .element .frame .div,
+  .element .frame .text-wrapper-2,
+  .element .frame .text-wrapper-3,
+  .element .frame .text-wrapper-4,
+  .element .frame .line-stroke {
+    position: absolute;
+    z-index: 0;
+  }
+
+.element .text-wrapper {
+    position: absolute;
+    width: calc(100% - 1785px);
+    top: 0;
+    left: 2px;
+    font-family: "D-DIN Condensed-DINCondensed-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: normal;
+    white-space: nowrap;
+}
+.element .div {
+    width: calc(100% - 1765px);
+    left: 1765px;
+    text-align: right;
+    position: absolute;
+    top: 0;
+    font-family: "D-DIN Condensed-DINCondensed-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: normal;
+    white-space: nowrap;
+}
+.element .text-wrapper-2 {
+    width: calc(100% - 1773px);
+    left: 882px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    font-family: "D-DIN Condensed-DINCondensed-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: normal;
+    white-space: nowrap;
+}
+.element .text-wrapper-3 {
+    width: calc(100% - 1774px);
+    left: 436px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    font-family: "D-DIN Condensed-DINCondensed-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: normal;
+    white-space: nowrap;
+}
+.element .text-wrapper-4 {
+    width: calc(100% - 1774px);
+    left: 1324px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    font-family: "D-DIN Condensed-DINCondensed-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: normal;
+    white-space: nowrap;
+}
+.element .line-stroke {
+    position: absolute;
+    top: 57px;
+    left: 0;
+    width: 1820px;
+    height: 5px;
+}
+.element .image {
+    position: absolute;
+    top: 218px;
+    left: 358px;
+    width: 1204px;
+    height: 644px;
+}
+.element .frame-2 {
+    position: absolute;
+    top: 218px;
+    left: 1592px;
+    width: 278px;
+    height: 644px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.element .view {
+    margin-left: 23px;
+    width: 232px;
+    height: 318px;
+    position: relative;
+    margin-top: 21px;
+    background-color: #121212;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.element .text-wrapper-5 {
+    position: absolute;
+    top: calc(50.00% - 97px);
+    left: calc(50.00% - 115px);
+    width: 231px;
+    font-family: "Helvetica-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 200px;
+    text-align: center;
+    letter-spacing: -4.00px;
+    line-height: 260.0px;
+    white-space: nowrap;
+}
+.element .your-playing {
+    position: absolute;
+    left: 34px;
+    bottom: 251px;
+    width: 165px;
+    font-family: "Helvetica-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: -0.40px;
+    line-height: 24.0px;
+    white-space: nowrap;
+}
+.element .rectangle {
+    margin-top: 15px;
+    margin-left: 30px;
+    width: 219px;
+    height: 11px;
+    border-radius: 100px;
+    border: 3px solid;
+    border-color: #121212;
+}
+.element .rectangle-2 {
+    margin-top: 5px;
+    margin-left: 30px;
+    width: 219px;
+    height: 11px;
+    border-radius: 100px;
+    border: 3px solid;
+    border-color: #121212;
+}
+.element .group {
+    margin-left: 29px;
+    width: 220px;
+    height: 175px;
+    margin-top: 15px;
+}
+.element .frame-3 {
+    position: absolute;
+    top: 387px;
+    left: 51px;
+    width: 278px;
+    height: 475px;
+}
+.element .GHOST-PIANO-WHAT-DID {
+    position: absolute;
+    left: 358px;
+    top: 40px;
+    width: 277px;
+    font-family: "Helvetica-Regular", Helvetica;
+    font-weight: 400;
+    color: #121212;
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: 39.0px;
+}
+.element .PLAY-before-it-PLAYS {
+    position: absolute;
+    left: 668px;
+    top: 40px;
+    width: 277px;
+    font-family: "Helvetica-Regular", Helvetica;
+    font-weight: 400;
+    color: #121212; 
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: 39.0px;
+}
+.element .play-a-short-melody {
+    position: absolute;
+    left: 1283px;
+    top: 40px;
+    width: 587px;
+    font-family: "Helvetica-Regular", Helvetica;
+    font-weight: 400;
+    color: #121212;
+    font-size: 18px;
+    letter-spacing: -0.36px;
+    line-height: 27px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stage-root {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+/* ===== 피아노 인터랙션용 오버레이 ===== */
+.piano-hit-area {
+    position: absolute;
+    top: 445px;   
+    left: 390px; 
+    width: 1145px;
+    height: 390px;
+    pointer-events: none; 
+  }
+  
+  /* 각 키 버튼(투명 오버레이) */
+  .piano-key {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    cursor: inherit;
+    pointer-events: auto;
+  }
+  
+  /* 화이트 키 기본 상태 / 호버 */
+  .piano-key.white:hover {
+    background: rgba(0, 0, 0, 0.08);
+    }
+  
+  /* 블랙 키 위 오버레이(검은 건반은 살짝 밝게) */
+  .piano-key.black:hover {
+    background: rgba(255, 255, 255, 0.95);
+    mix-blend-mode: screen;
+  }
+  
+  .ghost-controls {
+    position: absolute;
+    top: 280px;   
+    left: 50px;   
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 10;
+  }
+  
+  /* 공통 버튼 스타일 (이전 스테이지 느낌 복붙) */
+  .stage-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 26px;
+    border-radius: 999px;
+    border: 2px solid #121212;
+    font-family: "Helvetica-Bold", Helvetica;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.6px;
+    cursor: inherit;
+    background-color: transparent;
+    color: #121212;
+    white-space: nowrap;
+  }
+  
+  /* 비활성화 */
+  .stage-btn:disabled {
+    opacity: 1;
+    background-color: transparent;
+    color: #121212;
+    cursor: default;
+  }
+  
+  /* 활성화 시 꽉 채워지는 스타일 */
+  .stage-btn:not(:disabled) {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  /* YOUR PLAYING 아래에 뜨는 노트 텍스트 */
+  .playing-notes {
+    position: absolute;
+    left: 1626px;   /* 오른쪽 패널 안쪽 X 위치 - 이 값만 좌우로 조정 */
+    top: 420px;  /* 위아래 위치는 이 값으로 조정 */
+    width: 210px;
+    font-family: "Helvetica-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 150px;
+    text-align: center;
+    letter-spacing: -0.4px;
+    line-height: 22px;
+    z-index: 11; 
+  }
+
+  /* 전체 화면 왼쪽 영역 반전 레이어 */
+.ai-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;      
+    width: 0;           
+    background: #ffffff;
+    mix-blend-mode: difference; 
+    pointer-events: none;
+    z-index: 4;       
+  }
+
+  .cursor-ghost {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 72px;      
+    height: 72px;
+    pointer-events: none;         
+    background: url("img/cursor.svg") no-repeat center center;
+    background-size: contain;
+    mix-blend-mode: difference;    
+    z-index: 9999;
+    
+    /* 클릭 포인트(좌표) 보정값 – 이게 네가 미세 조정할 곳 */
+    transform: translate(-8px, -8px);
+}
+
+/* ===== STAGE INTRO OVERLAY (공통) ===== */
+.stage-intro-overlay {
+    position: fixed;
+    inset: 0; 
+    z-index: 999;                 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.28); 
+    backdrop-filter: blur(12px);     
+    -webkit-backdrop-filter: blur(12px);
+    transition: opacity 0.25s ease;
+  }
+  
+  /* 사라질 때 */
+  .stage-intro-overlay.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  /* 네 알림창이 가운데에 잘 오도록 컨테이너 하나만 감싸줌 */
+  .stage-intro-inner {
+    position: relative;
+  }
+  
+  /* ===== STAGE 2 INTRO CARD ===== */
+  .intro-frame {
+    background-color: #ffffff;
+    width: 100%;
+    min-width: 713px;
+    min-height: 500px;
+    position: relative;
+  }
+  
+  .intro-frame .STAGE {
+    position: absolute;
+    top: 53px;
+    left: calc(50.00% - 300px);
+    width: 98px;
+    height: 80px;
+  }
+  .intro-frame .vector {
+    position: absolute;
+    top: 46px;
+    left: calc(50.00% - 28px);
+    width: 22px;
+    height: 34px;
+  }
+  .intro-frame .img {
+    position: absolute;
+    top: 46px;
+    left: calc(50.00% - 49px);
+    width: 22px;
+    height: 34px;
+  }
+  .intro-frame .vector-2 {
+    position: absolute;
+    top: 1px;
+    left: calc(50.00% + 33px);
+    width: 15px;
+    height: 34px;
+  }
+  .intro-frame .vector-3 {
+    position: absolute;
+    top: 0;
+    left: calc(50.00% + 11px);
+    width: 20px;
+    height: 35px;
+  }
+  .intro-frame .vector-4 {
+    position: absolute;
+    top: 1px;
+    left: calc(50.00% - 14px);
+    width: 24px;
+    height: 34px;
+  }
+  .intro-frame .vector-5 {
+    position: absolute;
+    top: 1px;
+    left: calc(50.00% - 29px);
+    width: 18px;
+    height: 34px;
+  }
+  .intro-frame .vector-6 {
+    position: absolute;
+    top: 0;
+    left: calc(50.00% - 49px);
+    width: 19px;
+    height: 35px;
+  }
+  .intro-frame .MANUAL-FOR-HUMAN {
+    position: absolute;
+    top: 54px;
+    left: calc(50.00% + 115px);
+    width: 184px;
+    height: 80px;
+  }
+  
+  .intro-frame .intro-desc-text {
+    position: absolute;
+    top: 170px;
+    left: calc(50.00% - 302px);
+    width: 616px;
+    font-size: 24px;
+    letter-spacing: -0.48px;
+    line-height: 48px;
+    font-family: "Pretendard-Bold", Helvetica;
+    font-weight: 700;
+    color: #121212;
+  }
+  
+  /* TIP 블록 */
+  .intro-frame .tip-block {
+    gap: 7px;
+    position: absolute;
+    top: 340px;
+    left: 54px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .intro-frame .tip-label-wrapper {
+    justify-content: center;
+    gap: 10px;
+    padding: 5px 15px;
+    position: relative;
+    flex: 0 0 auto;
+    border-radius: 100px;
+    border: 3px solid #121212;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .intro-frame .tip-label {
+    position: relative;
+    width: fit-content;
+    margin-top: -3px;
+    font-family: "D-DIN Condensed-DINCondensed-Bold", Helvetica;
+    font-weight: 700;
+    color: #121212;
+    font-size: 18px;
+    text-align: center;
+    line-height: 23.4px;
+    white-space: nowrap;
+  }
+  
+  .intro-frame .tip-text {
+    position: relative;
+    width: 548px;
+    margin-top: 0px;
+    font-size: 18px;
+    letter-spacing: -0.36px;
+    line-height: 36px;
+    font-family: "Pretendard-Bold", Helvetica;
+    font-weight: 700;
+    color: #121212;
+  }
+  
+  /* START 버튼 */
+  
+  .intro-frame .intro-start-wrapper {
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 30px;
+    position: absolute;
+    top: 413px;
+    left: calc(50.00% - 54px);
+    background-color: #121212;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    /* cursor: pointer; */
+  }
+  
+  .intro-frame .intro-start-text {
+    position: relative;
+    width: fit-content;
+    margin-top: -3px;
+    font-family: "D-DIN Condensed-DINCondensed-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: -0.50px;
+    line-height: 32.5px;
+    white-space: nowrap;
+  }
+  /* 알림창(인트로 오버레이) 위에서는 기본 커서 완전 비활성 */
+  .stage-intro-overlay,
+  .stage-intro-overlay * {
+    cursor: none !important;
+  }
+  /* STAGE 3: 슬라이더 오른쪽 100% 라벨 살짝 안쪽으로 보정 */
+.stage-root > .element > .frame .div {
+  transform: translateX(-18px) !important;
+}

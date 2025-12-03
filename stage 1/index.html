@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="globals.css" />
+  <link rel="stylesheet" href="styleguide.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- ▼▼▼ STAGE 1 INTRO OVERLAY ▼▼▼ -->
+<div class="stage-intro-overlay" id="stage1-intro">
+  <div class="stage-intro-inner">
+    <div class="intro-frame">
+      <div class="STAGE">
+        <img class="vector" src="img/n1.svg" />
+        <img class="img" src="img/nVector.svg" />
+        <img class="vector-2" src="img/nE.svg" />
+        <img class="vector-3" src="img/nG.svg" />
+        <img class="vector-4" src="img/nA.svg" />
+        <img class="vector-5" src="img/nT.svg" />
+        <img class="vector-6" src="img/nS.svg" />
+      </div>
+
+      <img class="MANUAL-FOR-HUMAN" src="img/MANUAL-FOR-HUMAN.svg" />
+
+      <p class="intro-desc-text">
+        (1) 하단 슬라이드바로 개입도를 설정하세요.<br />
+        (2) 3가지 두뇌 문제를 풀어보세요.
+      </p>
+
+      <div class="tip-block">
+        <div class="tip-label-wrapper">
+          <div class="tip-label">TIP!</div>
+        </div>
+        <p class="tip-text">
+          문제가 어렵다면 개입도를 올려보세요. 하지만, 이게 최선일까요?
+        </p>
+      </div>
+
+      <div class="intro-start-wrapper">
+        <div class="intro-start-text">START</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ▲▲▲ STAGE 1 INTRO OVERLAY ▲▲▲ -->
+
+  <div class="stage-root">
+    <div class="element">
+      <img class="rectangle" src="img/rectangle 17.svg" data-reactive />
+      <img class="img" src="img/rectangle 16.svg" data-reactive />
+
+      <div class="STAGE" data-reactive>
+        <img class="vector" src="img/1.svg" />
+        <img class="vector-2" src="img/sharp.svg" />
+        <img class="vector-3" src="img/E.svg" />
+        <img class="vector-4" src="img/G.svg" />
+        <img class="vector-5" src="img/A.svg" />
+        <img class="vector-6" src="img/T.svg" />
+        <img class="vector-7" src="img/S.svg" />
+      </div>
+
+      <!-- 슬라이더 -->
+      <div class="frame slider-frame">
+        <input
+        type="range"
+        id="ai-slider"
+        class="slider-input"
+        min="0"
+        max="100"
+        value="0" 
+      />
+        <div class="slider-track"></div>
+        <div class="ellipse"></div>
+
+        <div class="text-wrapper">0%</div>
+        <div class="text-wrapper-3">25%</div>
+        <div class="text-wrapper-2">50%</div>
+        <div class="text-wrapper-4">75%</div>
+        <div class="div">100%</div>
+      </div>
+
+      <!-- 문제 카드 -->
+      <div class="frame-2" data-reactive>
+        <div class="text-wrapper-5">Question #1</div>
+
+        <div class="frame-3">
+          <p class="a-b-b-a">
+            한 마을에는 진실만 말하는 사람과 거짓말만 하는 사람이 있다.<br />
+            A는 "B는 거짓말쟁이다. " 라고 말하고, B는 "A와 나는 다르다."고
+            말한다.<br />
+            누가 진실을 말하고 있는가?
+          </p>
+
+          <div class="frame-4">
+            <div class="view">
+              <div class="div-wrapper">
+                <div class="text-wrapper-6">A. A만 진실</div>
+              </div>
+            </div>
+            <div class="view">
+              <div class="div-wrapper">
+                <div class="text-wrapper-7">B. B만 진실</div>
+              </div>
+            </div>
+            <div class="view">
+              <div class="a-a-b-wrapper">
+                <p class="a-a-b">C. A, B 모두 진실</p>
+              </div>
+            </div>
+            <div class="view">
+              <div class="div-wrapper">
+                <p class="p">D. A, B 모두 거짓</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 버튼 / 결과 표시 -->
+        <div class="view-2">
+          <div class="frame-5">
+            <div class="frame-6 hint-button">
+              <div class="text-wrapper-8">HINT</div>
+            </div>
+            <div class="frame-7 solve-button">
+              <div class="text-wrapper-g">SOLVE for ME</div>
+            </div>
+            <div class="frame-7 submit-button">
+              <div class="text-wrapper-g">SUBMIT</div>
+            </div>
+          </div>
+
+          <div id="result-label" class="result-label"></div>
+
+          <div class="frame-7 next-button">
+            <div class="text-wrapper-9">→</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 힌트 패널: STAGE와 동일 그리드 -->
+      <div class="hint-panel">
+        <div class="hint-panel-title">HINT</div>
+        <div id="hint-card" class="hint-card"></div>
+      </div>
+
+      <div class="text-wrapper-10" data-reactive>
+        REASONING TEST : OVERRIDE
+      </div>
+      <p class="think-before-it" data-reactive>
+        THINK BEFORE IT THINKS FOR YOU
+      </p>
+      <p class="solve-simple" data-reactive>
+        SOLVE SIMPLE REASONING PUZZLES AND FEEL THE SYSTEM BEGIN<br />
+        TO ASSIST. YOU STILL LEAD THE THOUGHT — BUT IT’S NO LONGER<br />
+        YOURS ALONE.
+      </p>
+    </div>
+  </div>
+
+  <!-- 고정 비율 스케일 -->
+  <script>
+    // 공통: 리포트 저장용 헬퍼
+const REPORT_KEY = "autonomy-report-v1";
+
+function loadReport() {
+  try {
+    const raw = localStorage.getItem(REPORT_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    console.warn("Failed to parse report data:", e);
+    return {};
+  }
+}
+
+function saveReport(data) {
+  try {
+    localStorage.setItem(REPORT_KEY, JSON.stringify(data));
+  } catch (e) {
+    console.warn("Failed to save report data:", e);
+  }
+}
+
+    (function () {
+    const stage = document.querySelector(".stage-root");
+    const el    = document.querySelector(".element");
+    if (!stage || !el) return;
+
+    function resize() {
+      const baseWidth  = 1920;
+      const baseHeight = 1080;
+
+      // 뷰포트 기준으로 직접 가져오기
+      const rootWidth  = window.innerWidth;
+      const rootHeight = window.innerHeight;
+
+      // 1) 화면 기준 비율 계산
+      let scale = Math.min(
+        rootWidth  / baseWidth,
+        rootHeight / baseHeight
+      );
+
+      // 2) 절대 1보다 크게 키우지 않기 (→ 최대 실제 크기까지만)
+      if (scale > 1) {
+        scale = 1;
+      }
+
+      const scaledWidth  = baseWidth  * scale;
+      const scaledHeight = baseHeight * scale;
+
+      // 가운데 정렬
+      const offsetX = (rootWidth  - scaledWidth)  / 2;
+      const offsetY = (rootHeight - scaledHeight) / 2;
+
+      // stage도 화면 크기에 맞춰줌
+      stage.style.width  = rootWidth + "px";
+      stage.style.height = rootHeight + "px";
+
+      el.style.width  = baseWidth + "px";
+      el.style.height = baseHeight + "px";
+      el.style.transformOrigin = "top left";
+      el.style.transform =
+        "translate(" + offsetX + "px," + offsetY + "px) scale(" + scale + ")";
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+  })();
+  </script>
+
+<script>
+  (function () {
+    const slider = document.getElementById("ai-slider");
+    const root   = document.querySelector(".stage-root");
+    const frame  = document.querySelector(".slider-frame");
+    const track  = frame.querySelector(".slider-track");
+    const knob   = frame.querySelector(".ellipse");
+
+    if (!slider || !root || !frame || !track || !knob) return;
+
+    function syncSlider() {
+  const value = Number(slider.value) || 0;  // 0 ~ 100
+  const t     = value / 100;
+
+  if (!root || !frame || !track || !knob) return;
+
+  // 1) 경계선 위치는 '실제 화면 좌표' 기준으로 계산 (현재 방식 유지)
+  const rootRect  = root.getBoundingClientRect();
+  const trackRect = track.getBoundingClientRect();
+
+  const trackStartOnRoot = trackRect.left - rootRect.left;  // root 안에서 트랙 시작 x
+  const trackWidthScreen = trackRect.width;                 // 화면에서 보이는 트랙 길이
+
+  const borderXInRoot = trackStartOnRoot + trackWidthScreen * t; // 0~트랙 끝
+  const splitPercent  = (borderXInRoot / rootRect.width) * 100;
+  root.style.setProperty("--split", splitPercent + "%");
+
+  const TRACK_DESIGN_WIDTH = 1820;       // CSS에서 설정한 값 그대로
+  const knobXInFrame       = TRACK_DESIGN_WIDTH * t; // 0 ~ 1820
+
+  knob.style.left = knobXInFrame + "px";
+}
+    slider.addEventListener("input", syncSlider);
+    window.addEventListener("resize", syncSlider);
+    slider.value = "0";
+    syncSlider();
+  })();
+</script>
+
+  <!-- 문제/힌트/채점/AI 개입도 로직 -->
+<script>
+  (function () {
+    const slider = document.getElementById("ai-slider");
+
+    const questionTitleEl = document.querySelector(".text-wrapper-5");
+    const questionBodyEl  = document.querySelector(".a-b-b-a");
+
+    const optionViews = Array.from(
+      document.querySelectorAll(".frame-4 .view")
+    );
+    const optionLabels = [
+      document.querySelector(".text-wrapper-6"),
+      document.querySelector(".text-wrapper-7"),
+      document.querySelector(".a-a-b"),
+      document.querySelector(".p"),
+    ];
+
+    const hintButton   = document.querySelector(".hint-button");
+    const solveButton  = document.querySelector(".solve-button");
+    const submitButton = document.querySelector(".submit-button");
+    const nextButton   = document.querySelector(".next-button");
+
+    const hintCard    = document.getElementById("hint-card");
+    const resultLabel = document.getElementById("result-label");
+    const hintTitle   = document.querySelector(".hint-panel-title");
+
+    if (
+      !slider ||
+      !questionTitleEl ||
+      !questionBodyEl ||
+      optionViews.length !== 4 ||
+      optionLabels.some((l) => !l) ||
+      !hintButton ||
+      !solveButton ||
+      !submitButton ||
+      !nextButton ||
+      !hintCard ||
+      !resultLabel
+    ) {
+      console.warn("Stage1 logic: some DOM elements not found.");
+      return;
+    }
+
+    const questions = [
+  {
+    id: 1,
+    title: "Question #1",
+    bodyHtml:
+      "진실만 말하는 사람과 거짓말만 하는 사람이 있다.<br />" +
+      'A: "B는 거짓말쟁이다." / B: "A와 나는 같다."<br />' +
+      "누가 진실을 말하고 있는가?",
+    choices: [
+      "A. A만 진실",
+      "B. B만 진실",
+      "C. 둘 다 진실",
+      "D. 둘 다 거짓",
+    ],
+    // 0: A, 1: B, 2: 둘 다, 3: 둘 다 거짓
+    answerIndex: 0,
+    hint:
+      "① A가 진실이라고 가정했을 때 모순이 생기는지, " +
+      "② A가 거짓이라고 가정했을 때 모순이 생기는지 각각 따져보시오.",
+  },
+  {
+    id: 2,
+    title: "Question #2",
+    bodyHtml:
+      "서랍에 빨간 양말 3켤레와 파란 양말 3켤레가 뒤섞여 있다.<br />" +
+      "불을 끈 상태에서 같은 색 양말 한 켤레를 반드시 얻으려면<br />" +
+      "최소 몇 개를 꺼내야 할까?",
+    choices: [
+      "A. 2개",
+      "B. 3개",
+      "C. 4개",
+      "D. 5개",
+    ],
+    // 최악의 경우를 생각하면 3개면 같은 색 두 개가 반드시 생김
+    answerIndex: 1,
+    hint:
+      "가장 운이 나쁜 경우를 먼저 상상해 보시오. " +
+      "빨간색과 파란색이 최대한 섞여 뽑힌다면 어떻게 될까요?",
+  },
+  {
+    id: 3,
+    title: "Question #3",
+    bodyHtml:
+      "다음 수열에서 빈칸에 들어갈 숫자는?<br />" +
+      "1, 4, 9, 16, ___",
+    choices: [
+      "A. 20",
+      "B. 21",
+      "C. 25",
+      "D. 27",
+    ],
+    // 1², 2², 3², 4² → 다음은 5²
+    answerIndex: 2,
+    hint:
+      "각 숫자를 1, 2, 3, 4와 연결해 보면 어떤 규칙이 보이나요? " +
+      "제곱수 관점에서 생각해 보시오.",
+  },
+];
+
+    let currentQuestion = 0;
+    let selectedIndex = null;
+    let hintManualVisible = false;
+
+    let s1_maxIntervention = 0;
+    let s1_usedHint = false;
+    let s1_usedSolve = false;
+    let s1_correct = 0;
+    let s1_wrong = 0;
+
+    hintButton.addEventListener("click", () => {
+  const val = Number(slider.value || 0);
+  if (val < 25 || val > 49) return;   // 25~49%에서만 토글
+  hintManualVisible = !hintManualVisible;
+  updateAssistUI();                   // 상태 다시 반영
+});
+
+solveButton.addEventListener("click", () => {
+  const val = Number(slider.value || 0);
+  if (val < 75 || val > 90) return;   // 75~90% 구간에서만 작동
+  const q = questions[currentQuestion];
+  selectOption(q.answerIndex);
+});
+
+    function setButtonEnabled(el, enabled) {
+      if (!el) return;
+      el.classList.toggle("button-disabled", !enabled);
+      el.classList.toggle("button-active", enabled);
+    }
+
+    function clearSelection() {
+      selectedIndex = null;
+      optionViews.forEach((v) => v.classList.remove("is-selected"));
+    }
+
+    function showHintCard(show) {
+  if (!hintCard || !hintTitle) return;
+
+  if (!show) {
+    hintCard.style.display  = "none";
+    hintTitle.style.display = "none";
+    hintCard.textContent    = "";
+    return;
+  }
+
+  const q = questions[currentQuestion];
+  hintCard.style.display  = "block";
+  hintTitle.style.display = "block";
+  hintCard.textContent    = q.hint;
+}
+
+    function loadQuestion(index) {
+      const q = questions[index];
+      currentQuestion = index;
+      hintManualVisible = false;
+
+      questionTitleEl.textContent = q.title;
+      questionBodyEl.innerHTML = q.bodyHtml;
+
+      q.choices.forEach((txt, i) => {
+        optionLabels[i].textContent = txt;
+      });
+
+      clearSelection();
+      resultLabel.textContent = "";
+      setButtonEnabled(submitButton, false);
+      setButtonEnabled(nextButton, false);
+      showHintCard(false);
+
+      updateAssistUI(); // 누적 상태에 맞춰 버튼 갱신
+    }
+
+    function selectOption(index) {
+      selectedIndex = index;
+      optionViews.forEach((v, i) => {
+        v.classList.toggle("is-selected", i === index);
+      });
+      setButtonEnabled(submitButton, true);
+    }
+
+      function gradeCurrent() {
+        if (selectedIndex == null) return;
+        const q = questions[currentQuestion];
+        const correct = selectedIndex === q.answerIndex;
+
+        // 정답/오답 카운트
+        if (correct) s1_correct++;
+        else s1_wrong++;
+
+      resultLabel.textContent = correct ? "CORRECT" : "WRONG";
+      setButtonEnabled(nextButton, true);
+    }
+
+      function goNext() {
+      if (currentQuestion === questions.length - 1) {
+        
+        // ▼ 여기서 Stage1 요약을 localStorage에 저장
+        const report = loadReport();
+        report.stage1 = {
+          maxIntervention: s1_maxIntervention,
+          usedHint: s1_usedHint,
+          usedSolve: s1_usedSolve,
+          correct: s1_correct,
+          wrong: s1_wrong,
+        };
+        saveReport(report);
+
+        window.location.href = "../stage 2/index.html";
+        return;
+      }
+
+      loadQuestion(currentQuestion + 1);
+    }
+
+    function updateAssistUI() {
+  const val = Number(slider.value || 0);
+
+  // ▼ 지금까지의 최대 개입도 기록
+      if (val > s1_maxIntervention) s1_maxIntervention = val;
+
+  // 누적 규칙
+  const hasHintBtn   = val >= 25;        
+  const hasHintCard  = val >= 50;        
+  const hasSolve     = val >= 75; 
+
+  setButtonEnabled(hintButton, hasHintBtn);
+
+  // 2) 힌트 패널
+  if (hasHintCard) {
+    // 50% 이상이면 버튼을 누르든 말든 항상 노출
+    showHintCard(true);
+  } else if (hasHintBtn) {
+    // 25~49% 구간에서는 버튼으로 토글
+    showHintCard(hintManualVisible);
+  } else {
+    // 0~24% 구간으로 돌아가면 힌트 완전 비활성화
+    hintManualVisible = false;
+    showHintCard(false);
+  }
+
+  // 3) SOLVE for ME 버튼
+  setButtonEnabled(solveButton, hasSolve);
+}
+
+    optionViews.forEach((view, idx) => {
+      view.addEventListener("click", () => {
+        selectOption(idx);
+      });
+    });
+
+    hintButton.addEventListener("click", () => {
+      if (!unlockedHintButton) return;
+      if (unlockedAutoHint) return;
+
+      hintManualVisible = !hintManualVisible;
+      updateAssistUI();
+    });
+
+    solveButton.addEventListener("click", () => {
+      if (!unlockedSolve) return;
+      const q = questions[currentQuestion];
+      selectOption(q.answerIndex);
+    });
+
+        // HINT를 한 번이라도 눌렀는지 기록용
+    hintButton.addEventListener("click", () => {
+      s1_usedHint = true;
+    });
+
+    // SOLVE for ME를 한 번이라도 눌렀는지 기록용
+    solveButton.addEventListener("click", () => {
+      s1_usedSolve = true;
+    });
+
+    submitButton.addEventListener("click", () => {
+      if (submitButton.classList.contains("button-disabled")) return;
+      gradeCurrent();
+    });
+
+    nextButton.addEventListener("click", () => {
+      if (nextButton.classList.contains("button-disabled")) return;
+      goNext();
+    });
+
+    slider.addEventListener("input", updateAssistUI);
+
+    loadQuestion(0);
+  })();
+</script>
+
+<div class="draw-cursor"></div>
+
+<div class="draw-cursor"></div>
+
+<script>
+  (function () {
+    const cursor = document.querySelector(".draw-cursor");
+    if (!cursor) return;
+
+    // ★ 여기서 커서 기준점 보정
+    // SVG에서 '진짜 클릭 포인트'가 어디인지에 맞춰서 조절하면 됨
+    const CURSOR_OFFSET_X = 15;  // 마우스 좌표에서 얼마나 빼줄지
+    const CURSOR_OFFSET_Y = 10;
+
+    window.addEventListener("pointermove", function (e) {
+      cursor.style.left = (e.clientX - CURSOR_OFFSET_X) + "px";
+      cursor.style.top  = (e.clientY - CURSOR_OFFSET_Y) + "px";
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const intro = document.getElementById('stage1-intro');
+    if (!intro) return;
+
+    const startArea = intro.querySelector('.intro-start-wrapper');
+    if (!startArea) return;
+
+    startArea.addEventListener('click', function () {
+      intro.classList.add('is-hidden');
+    });
+  })();
+</script>
+</body>
+</html>

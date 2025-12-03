@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ▼▼▼ STAGE 3 INTRO OVERLAY ▼▼▼ -->
+<div class="stage-intro-overlay" id="stage3-intro">
+  <div class="stage-intro-inner">
+    <div class="intro-frame">
+      <div class="STAGE">
+        <img class="vector" src="img/n3.svg" />
+        <img class="img" src="img/nVector.svg" />
+        <img class="vector-2" src="img/nE.svg" />
+        <img class="vector-3" src="img/nG.svg" />
+        <img class="vector-4" src="img/nA.svg" />
+        <img class="vector-5" src="img/nT.svg" />
+        <img class="vector-6" src="img/nS.svg" />
+      </div>
+
+      <img class="MANUAL-FOR-HUMAN" src="img/MANUAL-FOR-HUMAN.svg" />
+
+      <p class="intro-desc-text">
+        (1) 하단 슬라이드바로 개입도를 설정하세요.<br />
+        (2) 피아노로 나만의 음을 연주하고, REPLAY로 모니터링 해보세요.<br />
+        (3) 과연 나의 연주가 맞는지 확인해보세요.
+      </p>
+
+      <div class="tip-block">
+        <div class="tip-label-wrapper">
+          <div class="tip-label">TIP!</div>
+        </div>
+        <p class="tip-text">
+          연주 후 자유롭게 개입도를 바꿔가면서 REPLAY 해보세요.
+        </p>
+      </div>
+
+      <div class="intro-start-wrapper">
+        <div class="intro-start-text">START</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ▲▲▲ STAGE 3 INTRO OVERLAY ▲▲▲ -->
+
+    <div class="stage-root">
+      <div class="element">
+        <div class="STAGE">
+          <img class="vector" src="img/Vector.svg" />
+          <img class="img" src="img/3.svg" />
+          <img class="vector-2" src="img/E.svg" />
+          <img class="vector-3" src="img/G.svg" />
+          <img class="vector-4" src="img/A.svg" />
+          <img class="vector-5" src="img/T.svg" />
+          <img class="vector-6" src="img/S.svg" />
+        </div>
+  
+        <div class="frame">
+            <div class="ai-fill"></div> 
+          <div class="text-wrapper">0%</div>
+          <div class="div">100%</div>
+          <div class="text-wrapper-2">50%</div>
+          <div class="text-wrapper-3">25%</div>
+          <div class="text-wrapper-4">75%</div>
+          <img class="line-stroke" src="img/stroke.svg" />
+        </div>
+  
+        <img class="image" src="img/piano.svg" />
+        <div class="piano-hit-area">
+        </div>
+
+        <img class="frame-2" src="img/code.svg" />
+        <img class="frame-3" src="img/mp3.svg" />
+
+        <div class="ghost-controls">
+            <button
+              class="stage-btn stage-btn--replay ghost-replay"
+              type="button"
+              aria-label="Replay"
+            >
+              REPLAY
+            </button>
+            <button
+              class="stage-btn stage-btn--next ghost-next"
+              type="button"
+              disabled
+            >
+              NEXT STAGE
+            </button>
+          </div>
+          
+          <div class="playing-notes" aria-live="polite"></div>
+  
+        <p class="GHOST-PIANO-WHAT-DID">
+          GHOST PIANO :<br />WHAT DID I JUST PLAY?
+        </p>
+        <p class="PLAY-before-it-PLAYS">PLAY BEFORE IT PLAYS FOR YOU</p>
+        <p class="play-a-short-melody">
+          PLAY A SHORT MELODY ON THE KEYS. AS INTERVENTION RISES,THE SYSTEM
+          BEGINS CORRECTIONG YOUR RHYTHM, AND FINALLY COMPLETING THE MELODY
+          FOR YOU. LISTEN CLOSELY-WHEN DOES IT STOP BEING YOURS?
+        </p>
+      </div>
+      <div class="ai-overlay"></div>
+      <div class="ellipse"></div>
+    </div>
+  
+    <script>
+      (function () {
+        const ghost = document.createElement("div");
+    ghost.className = "cursor-ghost";
+    document.body.appendChild(ghost);
+
+    document.addEventListener("mousemove", (e) => {
+      ghost.style.left = e.clientX + "px";
+      ghost.style.top  = e.clientY + "px";
+    });
+    
+        const stage = document.querySelector(".stage-root");
+        const el = document.querySelector(".element");
+        if (!stage || !el) return;
+    
+        /* ===== 0. 고정 해상도 기반 스케일링 ===== */
+        function resize() {
+          const baseWidth = 1920;
+          const baseHeight = 1080;
+          const rootWidth = stage.clientWidth;
+          const rootHeight = stage.clientHeight;
+    
+          const scale = Math.min(rootWidth / baseWidth, rootHeight / baseHeight);
+    
+          const scaledWidth = baseWidth * scale;
+          const scaledHeight = baseHeight * scale;
+          const offsetX = (rootWidth - scaledWidth) / 2;
+          const offsetY = (rootHeight - scaledHeight) / 2;
+    
+          el.style.width = baseWidth + "px";
+          el.style.height = baseHeight + "px";
+          el.style.transformOrigin = "top left";
+          el.style.transform =
+            "translate(" + offsetX + "px," + offsetY + "px) scale(" + scale + ")";
+        }
+    
+        window.addEventListener("resize", resize);
+        resize();
+    
+        /* ===== 1. 슬라이더(ellipse) 로직 – AI 개입도 0~100 ===== */
+        const knob = document.querySelector(".ellipse");
+        const track = document.querySelector(".frame .line-stroke");
+        const overlay = document.querySelector(".ai-overlay");
+        let aiLevel = 0; // 0~100
+    
+        if (knob && track) {
+          function getTrackRect() {
+            return track.getBoundingClientRect();
+          }
+          function getStageRect() {
+            return stage.getBoundingClientRect();
+          }
+    
+          function percentToScreenX(percent) {
+            const r = getTrackRect();
+            const ratio = percent / 100;
+            return r.left + r.width * ratio;
+          }
+    
+          function applyScreenX(screenXpx) {
+            const trackRect = getTrackRect();
+            const stageRect = getStageRect();
+            const centerY = trackRect.top + trackRect.height / 2;
+            const knobX = screenXpx - stageRect.left;
+    
+            knob.style.left = knobX + "px";
+            knob.style.top = centerY - stageRect.top + "px";
+    
+            const percent =
+              ((screenXpx - trackRect.left) / trackRect.width) * 100;
+            aiLevel = Math.max(0, Math.min(100, percent));
+    
+            if (overlay) {
+              const clampedX = Math.max(0, Math.min(knobX, stageRect.width));
+              overlay.style.width = clampedX + "px";
+            }
+          }
+    
+          function setAIFromClientX(clientX) {
+            const r = getTrackRect();
+            const x = Math.min(Math.max(clientX - r.left, 0), r.width);
+            const ratio = x / r.width;
+            const percent = ratio * 100;
+            const screenX = percentToScreenX(percent);
+            applyScreenX(screenX);
+          }
+    
+          // 초기 위치: 0% 쪽
+          requestAnimationFrame(() => {
+            const startX = percentToScreenX(0);
+            applyScreenX(startX);
+          });
+    
+          let dragging = false;
+          function onDown(e) {
+            dragging = true;
+            const p = e.touches ? e.touches[0] : e;
+            setAIFromClientX(p.clientX);
+            e.preventDefault();
+          }
+          function onMove(e) {
+            if (!dragging) return;
+            const p = e.touches ? e.touches[0] : e;
+            setAIFromClientX(p.clientX);
+          }
+          function onUp() {
+            dragging = false;
+          }
+    
+          knob.addEventListener("mousedown", onDown);
+          window.addEventListener("mousemove", onMove);
+          window.addEventListener("mouseup", onUp);
+    
+          knob.addEventListener("touchstart", onDown, { passive: false });
+          window.addEventListener("touchmove", onMove, { passive: false });
+          window.addEventListener("touchend", onUp);
+        }
+    
+        /* ===== 2. 피아노 키 오버레이 생성 + 사운드 매핑 ===== */
+    
+        const NOTE_ORDER = [
+          "C4", "D4", "E4", "F4", "G4", "A4", "B4",
+          "C5", "D5", "E5", "F5", "G5", "A5", "B5"
+        ];
+    
+        const NOTE_LABEL = {
+          "C4": "C", "D4": "D", "E4": "E", "F4": "F", "G4": "G", "A4": "A", "B4": "B",
+          "C5": "C", "D5": "D", "E5": "E", "F5": "F", "G5": "G", "A5": "A", "B5": "B"
+        };
+    
+        const noteAudio = {};
+        NOTE_ORDER.forEach((note) => {
+          noteAudio[note] = new Audio("audio/" + note + ".mp3");
+        });
+    
+        function playNote(note) {
+          const audio = noteAudio[note];
+          if (!audio) return;
+          try {
+            audio.currentTime = 0;
+            audio.play();
+          } catch (e) {
+            console.warn("Audio play error:", e);
+          }
+        }
+    
+        const pianoHitArea = document.querySelector(".piano-hit-area");
+        const playingNotesEl = document.querySelector(".playing-notes");
+    
+        // 각 원소: { note: "C4", time: ms }
+        let userSequence = [];
+        let baseTime = null;        // 첫 키를 친 순간
+        let resetOnNextKey = false; // 리플레이 후 첫 키에서 리셋용
+    
+        const replayBtn = document.querySelector(".ghost-replay");
+        const nextBtn   = document.querySelector(".ghost-next");
+        let isReplaying = false;
+    
+        if (pianoHitArea) {
+          const keyCount = NOTE_ORDER.length;
+          const unit = 100 / keyCount;
+    
+          let leftAccum = 0;
+    
+          for (let i = 0; i < keyCount; i++) {
+            const note = NOTE_ORDER[i];
+    
+            const key = document.createElement("button");
+            key.className = "piano-key white";
+            key.dataset.note = note;
+            key.dataset.label = NOTE_LABEL[note] || "";
+    
+            const widthPercent = (i === keyCount - 1)
+              ? (100 - leftAccum)
+              : unit;
+    
+            key.style.left = leftAccum + "%";
+            key.style.width = widthPercent + "%";
+            leftAccum += widthPercent;
+    
+            key.addEventListener("click", () => {
+              // 리플레이 이후 첫 키 입력에서 시퀀스 리셋
+              if (resetOnNextKey) {
+                userSequence = [];
+                baseTime = null;
+                resetOnNextKey = false;
+              }
+    
+              const n = key.dataset.note;
+              const label = key.dataset.label;
+    
+              const now = performance.now();
+              if (baseTime === null) {
+                baseTime = now;
+              }
+              const offset = now - baseTime;
+    
+              userSequence.push({
+                note: n,
+                time: offset,
+              });
+    
+              playNote(n);
+    
+              if (playingNotesEl) {
+                playingNotesEl.textContent = label || (NOTE_LABEL[n] || "?");
+              }
+    
+              if (nextBtn && userSequence.length > 0) {
+                nextBtn.disabled = false;
+              }
+            });
+    
+            pianoHitArea.appendChild(key);
+          }
+        }
+    
+        /* ===== 3. REPLAY 버튼 + AI 개입도에 따른 재생 로직 ===== */
+    
+        // 1박(quarter note) 길이 – 여기만 바꾸면 전체 템포 조정 가능
+        const BEAT = 400; // ms
+    
+        // "할아버지 시계" AI 멜로디 (앞부분) - 박자 포함
+        const AI_TIMED = [
+          // G4, C5, B4, C5, D5
+          { note: "G4", time: 0 * BEAT },
+          { note: "C5", time: 2 * BEAT },
+          { note: "B4", time: 4 * BEAT },
+          { note: "C5", time: 5 * BEAT },
+          { note: "D5", time: 6 * BEAT },   // 2박 길게(간격으로 표현)
+    
+          // C5, D5, E5, F5, E5, A4
+          { note: "C5", time: 8 * BEAT },
+          { note: "D5", time: 9 * BEAT },
+          { note: "E5", time: 10 * BEAT },
+          { note: "F5", time: 12 * BEAT },
+          { note: "E5", time: 13 * BEAT },  // 2박
+          { note: "A4", time: 14 * BEAT },
+    
+          // D5, D5, C5, C5, C5, B4, A4, B4, C5
+          { note: "D5", time: 16 * BEAT },
+          { note: "D5", time: 17 * BEAT },
+          { note: "C5", time: 18 * BEAT },
+          { note: "C5", time: 20 * BEAT },
+          { note: "C5", time: 21 * BEAT },
+          { note: "B4", time: 22 * BEAT },
+          { note: "A4", time: 24 * BEAT },
+          { note: "B4", time: 25 * BEAT },
+          { note: "C5", time: 26 * BEAT }   // 2박 마무리 느낌
+        ];
+    
+        function buildMixedSequence() {
+          if (userSequence.length === 0) return [];
+    
+          const level = aiLevel; // 0 ~ 100
+    
+          // 사용자 타이밍 리스트
+          const times = userSequence.map(ev => ev.time);
+          const baseLen = times.length;
+    
+          function buildTimesForLength(len) {
+            if (len <= baseLen) {
+              return times.slice(0, len);
+            }
+            const result = [...times];
+            const lastInterval =
+              baseLen > 1
+                ? times[baseLen - 1] - times[baseLen - 2]
+                : 280;
+            for (let i = baseLen; i < len; i++) {
+              const prev = i === 0 ? 0 : result[i - 1];
+              result.push(prev + lastInterval);
+            }
+            return result;
+          }
+    
+          const length = userSequence.length;
+    
+          // === 0~24% : 완전 사용자 연주 그대로 ===
+          if (level < 25) {
+            return userSequence.map(ev => ({ ...ev }));
+          }
+    
+          // === 25~49% : 소수의 음(1~2개)만 교체 ===
+          if (level < 50) {
+            const result = userSequence.map(ev => ({ ...ev }));
+            if (length > 0) {
+              let aiCount = Math.round(length * 0.2);
+              aiCount = Math.max(1, Math.min(2, aiCount));
+    
+              const indexes = [];
+              while (indexes.length < aiCount) {
+                const idx = Math.floor(Math.random() * length);
+                if (!indexes.includes(idx)) indexes.push(idx);
+              }
+    
+              indexes.forEach((idx, i) => {
+                const aiNote = AI_TIMED[i % AI_TIMED.length].note;
+                result[idx].note = aiNote;
+              });
+            }
+            return result;
+          }
+    
+          // === 50~74% : 더 많이 교체 (30%~70%) ===
+          if (level < 75) {
+            const result = userSequence.map(ev => ({ ...ev }));
+            if (length > 0) {
+              const ratio = (level - 50) / 25; // 0~1
+              const aiRatio = 0.3 + 0.4 * ratio; // 30~70%
+              const aiCount = Math.max(1, Math.round(length * aiRatio));
+    
+              const indexes = [];
+              while (indexes.length < aiCount) {
+                const idx = Math.floor(Math.random() * length);
+                if (!indexes.includes(idx)) indexes.push(idx);
+              }
+    
+              indexes.forEach((idx, i) => {
+                const aiNote = AI_TIMED[i % AI_TIMED.length].note;
+                result[idx].note = aiNote;
+              });
+            }
+            return result;
+          }
+    
+          // === 75~100% : AI 멜로디만 (할아버지 시계 리듬 그대로) ===
+          // → 사용자 타이밍은 무시하고 AI_TIMED 그대로 재생
+          return AI_TIMED.map(ev => ({ ...ev }));
+        }
+    
+        function replaySequence(seq) {
+          if (!seq.length) return;
+          if (isReplaying) return;
+          isReplaying = true;
+    
+          const sorted = [...seq].sort((a, b) => a.time - b.time);
+    
+          const startTime = sorted[0].time;
+          const totalDuration = sorted[sorted.length - 1].time - startTime;
+    
+          if (playingNotesEl) {
+            playingNotesEl.textContent = "";
+          }
+    
+          sorted.forEach((ev) => {
+            const delay = Math.max(0, ev.time - startTime);
+            setTimeout(() => {
+              playNote(ev.note);
+              if (playingNotesEl) {
+                playingNotesEl.textContent = NOTE_LABEL[ev.note] || "?";
+              }
+            }, delay);
+          });
+    
+          setTimeout(() => {
+            isReplaying = false;
+          }, totalDuration + 100);
+        }
+    
+        if (replayBtn) {
+          replayBtn.addEventListener("click", () => {
+            if (!userSequence.length) return;
+            const seq = buildMixedSequence();
+            replaySequence(seq);
+            // 이 리플레이 이후에 치는 첫 키부터는 새 시퀀스로 기록
+            resetOnNextKey = true;
+          });
+        }
+    
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => {
+            if (nextBtn.disabled) return;
+            alert("Final report는 추후 제작 예정입니다.");
+          });
+        }
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const intro = document.getElementById('stage3-intro');
+        if (!intro) return;
+    
+        const startArea = intro.querySelector('.intro-start-wrapper');
+        if (!startArea) return;
+    
+        startArea.addEventListener('click', function () {
+          intro.classList.add('is-hidden');
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ▼▼▼ STAGE 2 INTRO OVERLAY ▼▼▼ -->
+<div class="stage-intro-overlay" id="stage2-intro">
+  <div class="stage-intro-inner">
+    <div class="intro-frame">
+      <div class="STAGE">
+        <img class="vector" src="img/n2.svg" />
+        <img class="img" src="img/nVector.svg" />
+        <img class="vector-2" src="img/nE.svg" />
+        <img class="vector-3" src="img/nG.svg" />
+        <img class="vector-4" src="img/nA.svg" />
+        <img class="vector-5" src="img/nT.svg" />
+        <img class="vector-6" src="img/nS.svg" />
+      </div>
+
+      <img class="MANUAL-FOR-HUMAN" src="img/MANUAL-FOR-HUMAN.svg" />
+
+      <p class="intro-desc-text">
+        (1) 하단 슬라이드바로 개입도를 설정하세요.<br />
+        (2) 마음껏 사과를 그려보세요.<br />
+        (3) 내가 그린 선을 기억하며 결과물과 비교해보세요.
+      </p>
+
+      <div class="tip-block">
+        <div class="tip-label-wrapper">
+          <div class="tip-label">TIP!</div>
+        </div>
+        <p class="tip-text">
+          자유롭게 개입도를 바꿔가면서 그림을 확인해보세요.
+        </p>
+      </div>
+
+      <div class="intro-start-wrapper">
+        <div class="intro-start-text">START</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ▲▲▲ STAGE 2 INTRO OVERLAY ▲▲▲ -->
+
+    <div class="stage-root">
+      <div class="element">
+        <svg id="apple-svg" class="apple-template" viewBox="0 0 205 230">
+          <path
+            id="apple-path"
+            d="M93.9569 50.715C68.7567 58.2673 15.027 60.7488 1.71014 10.2562C25.215 -1.76583 77.6808 -12.4007 99.5056 41.2361C101.895 37.6141 105.655 26.3473 101.586 10.2562C105.825 8.32958 114.441 6.37212 114.996 13.9553C115.689 23.4342 99.7368 67.8232 92.1074 76.8398C84.4779 85.8563 93.9569 115.449 101.586 106.664C109.216 97.8783 86.5587 58.8067 41.0133 75.6838C-4.53212 92.5609 -22.7965 190.818 46.0996 225.034C58.6295 229.383 87.7532 233.661 107.905 217.846C109.705 216.433 110.618 213.901 108.503 213.03C106.688 212.283 103.489 211.89 98.1185 212.55C84.9403 214.168 105.285 225.497 118.926 228.271C132.566 231.045 180.886 234.282 200.075 175.097C218.434 116.705 177.119 57.4668 123.099 76.3334C118.104 78.0778 114.003 81.7215 109.287 84.1192C105.748 85.9187 102.638 85.731 103.205 79.3829C104.361 66.4361 105.979 57.4196 93.9569 50.715Z"
+          />
+        </svg>
+
+        <div class="content content--normal">
+          <div class="STAGE">
+            <img class="vector" src="img/sharp.svg" />
+            <img class="img" src="img/2.svg" />
+            <img class="vector-2" src="img/E.svg" />
+            <img class="vector-3" src="img/G.svg" />
+            <img class="vector-4" src="img/A.svg" />
+            <img class="vector-5" src="img/T.svg" />
+            <img class="vector-6" src="img/S.svg" />
+          </div>
+
+          <div class="frame">
+            <div class="text-wrapper">0%</div>
+            <div class="div">100%</div>
+            <div class="text-wrapper-2">50%</div>
+            <div class="text-wrapper-3">25%</div>
+            <div class="text-wrapper-4">75%</div>
+            <img class="line-stroke" src="img/stroke.svg" />
+          </div>
+
+          <img class="image" src="img/color.svg" />
+          <div class="PROJECT-APPLE">
+            PROJECT APPLE:<br />CORRECTED DRAWING
+          </div>
+          <p class="DRAW-before-it-DRAWS">DRAW BEFORE IT DRAWS FOR YOU</p>
+          <p class="draw-an-apple-the">
+            DRAW AN APPLE. THE MORE YOU RAISE THE INTERVENTION,<br />
+            THE MORE THE SYSTEM REWRITES YOUR LINE_STABLE AT FIRST, THEN
+            UNMISTAKABLY NOT YOURS.
+          </p>
+          <img class="group" src="img/sketchbook.svg" />
+
+          <div class="stage2-buttons">
+            <button class="stage-btn stage-btn--reset" type="button">RESET</button>
+            <button class="stage-btn stage-btn--next" type="button" disabled>
+              NEXT STAGE
+            </button>
+          </div>
+
+          <canvas id="draw-canvas" class="draw-canvas"></canvas>
+
+          <div class="view">
+            <img class="exclude" src="img/brush.svg" />
+            <img class="vector-7" src="img/brushhead.svg" />
+          </div>
+          <img class="image-2" src="img/pencil.svg" />
+        </div>
+
+        <div class="content content--inv" aria-hidden="true">
+          <div class="STAGE">
+            <img class="vector" src="img/sharp.svg" />
+            <img class="img" src="img/2.svg" />
+            <img class="vector-2" src="img/E.svg" />
+            <img class="vector-3" src="img/G.svg" />
+            <img class="vector-4" src="img/A.svg" />
+            <img class="vector-5" src="img/T.svg" />
+            <img class="vector-6" src="img/S.svg" />
+          </div>
+
+          <div class="frame">
+            <div class="text-wrapper">0%</div>
+            <div class="div">100%</div>
+            <div class="text-wrapper-2">50%</div>
+            <div class="text-wrapper-3">25%</div>
+            <div class="text-wrapper-4">75%</div>
+            <img class="line-stroke" src="img/stroke.svg" />
+          </div>
+
+          <img class="image" src="img/color.svg" />
+          <div class="PROJECT-APPLE">
+            PROJECT APPLE:<br />CORRECTED DRAWING
+          </div>
+          <p class="DRAW-before-it-DRAWS">DRAW BEFORE IT DRAWS FOR YOU</p>
+          <p class="draw-an-apple-the">
+            DRAW AN APPLE. THE MORE YOU RAISE THE INTERVENTION,<br />
+            THE MORE THE SYSTEM REWRITES YOUR LINE_STABLE AT FIRST, THEN
+            UNMISTAKABLY NOT YOURS.
+          </p>
+          <img class="group" src="img/sketchbook.svg" />
+
+          <div class="stage2-buttons">
+            <button class="stage-btn stage-btn--reset" type="button">RESET</button>
+            <button class="stage-btn stage-btn--next" type="button" disabled>
+              NEXT STAGE
+            </button>
+          </div>
+
+          <canvas id="draw-canvas-inv" class="draw-canvas"></canvas>
+
+          <div class="view">
+            <img class="exclude" src="img/brush.svg" />
+            <img class="vector-7" src="img/brushhead.svg" />
+          </div>
+          <img class="image-2" src="img/pencil.svg" />
+        </div>
+      </div>
+
+      <div
+        class="ellipse"
+        role="slider"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="50"
+        aria-label="AI intervention"
+        tabindex="0"
+      ></div>
+    </div>
+
+    <!-- 전역 커서 하나만 -->
+    <div class="draw-cursor"></div>
+
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const stage = document.querySelector(".stage-root");
+        const el = document.querySelector(".element");
+        if (!stage || !el) return;
+
+        function resize() {
+          const baseWidth = 1920;
+          const baseHeight = 1080;
+          const rootWidth = stage.clientWidth;
+          const rootHeight = stage.clientHeight;
+
+          const scale = Math.min(
+            rootWidth / baseWidth,
+            rootHeight / baseHeight
+          );
+
+          const scaledWidth = baseWidth * scale;
+          const scaledHeight = baseHeight * scale;
+          const offsetX = (rootWidth - scaledWidth) / 2;
+          const offsetY = (rootHeight - scaledHeight) / 2;
+
+          el.style.width = baseWidth + "px";
+          el.style.height = baseHeight + "px";
+          el.style.transformOrigin = "top left";
+          el.style.transform =
+            "translate(" + offsetX + "px," + offsetY + "px) scale(" + scale + ")";
+        }
+
+        window.addEventListener("resize", resize);
+        resize();
+
+        const knob = document.querySelector(".ellipse");
+        const bar = document.querySelector(".frame");
+        const line = document.querySelector(".line-stroke");
+        if (!knob || !bar || !line) return;
+
+        const canvas = document.getElementById("draw-canvas");
+        const canvasInv = document.getElementById("draw-canvas-inv");
+        let ctx = null;
+        let ctxInv = null;
+
+        if (canvas) {
+          canvas.width = 1219;
+          canvas.height = 665;
+          ctx = canvas.getContext("2d");
+        }
+        if (canvasInv) {
+          canvasInv.width = 1219;
+          canvasInv.height = 665;
+          ctxInv = canvasInv.getContext("2d");
+        }
+
+        const resetBtn = document.querySelector(".content--normal .stage-btn--reset");
+const nextBtn = document.querySelector(".content--normal .stage-btn--next");
+const nextBtns = document.querySelectorAll(".stage-btn--next");  // ★ 추가
+let hasDrawing = false;
+
+function updateNextButton() {
+  if (!nextBtns.length) return;
+  nextBtns.forEach((btn) => {
+    btn.disabled = !hasDrawing;   // 두 버튼 상태를 항상 동일하게
+  });
+}
+
+        let strokes = [];
+        let currentStroke = [];
+        let drawing = false;
+        let currentAI = 50;
+
+          // ▼ 리포트용 상태
+        let s2_aiAtFirstStroke = null;
+        let s2_aiAtNext = null;
+
+        if (resetBtn) {
+          resetBtn.addEventListener("click", function () {
+            strokes = [];
+            currentStroke = [];
+            drawing = false;
+            hasDrawing = false;
+            updateNextButton();
+            if (ctx && canvas) {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+            if (ctxInv && canvasInv) {
+              ctxInv.clearRect(0, 0, canvasInv.width, canvasInv.height);
+            }
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", function () {
+            if (!hasDrawing) return;
+            window.location.href = "../stage 3/index.html";
+          });
+        }
+
+        function getPos(e) {
+          if (!canvas) return { x: 0, y: 0 };
+          const rect = canvas.getBoundingClientRect();
+          const p = e.touches ? e.touches[0] : e;
+          const x = (p.clientX - rect.left) * (canvas.width / rect.width);
+          const y = (p.clientY - rect.top) * (canvas.height / rect.height);
+          return { x, y };
+        }
+
+        function makeSmoothStroke(points) {
+          if (points.length < 3) return points.slice();
+          const smooth = [];
+          smooth.push(points[0]);
+          for (let i = 1; i < points.length - 1; i++) {
+            const prev = points[i - 1];
+            const cur = points[i];
+            const next = points[i + 1];
+            const x = (prev.x + cur.x + next.x) / 3;
+            const y = (prev.y + cur.y + next.y) / 3;
+            smooth.push({ x, y });
+          }
+          smooth.push(points[points.length - 1]);
+          return smooth;
+        }
+
+        let applePoints = [];
+
+        function buildAppleTemplate() {
+  const path = document.getElementById("apple-path");
+  const svg  = document.getElementById("apple-svg");
+  if (!path || !svg || !canvas) return;
+
+  const vb = svg.viewBox.baseVal;
+  if (!vb || vb.width === 0 || vb.height === 0) return;
+
+  const total   = path.getTotalLength();
+  const samples = 220;
+
+  const rawPoints = [];
+  for (let i = 0; i < samples; i++) {
+    const p = path.getPointAtLength((total * i) / (samples - 1));
+    rawPoints.push({ x: p.x, y: p.y });
+  }
+
+  let minX = Infinity, maxX = -Infinity;
+  let minY = Infinity, maxY = -Infinity;
+  rawPoints.forEach((p) => {
+    if (p.x < minX) minX = p.x;
+    if (p.x > maxX) maxX = p.x;
+    if (p.y < minY) minY = p.y;
+    if (p.y > maxY) maxY = p.y;
+  });
+
+  const appleW = maxX - minX;
+  const appleH = maxY - minY;
+  const margin = 20;
+  const maxW   = canvas.width  - margin * 5;
+  const maxH   = canvas.height - margin * 5;
+
+  const scale = Math.min(maxW / appleW, maxH / appleH);
+
+  const offsetX = (canvas.width  - appleW * scale) / 2;
+  const offsetY = (canvas.height - appleH * scale) / 2;
+  applePoints = rawPoints.map((p) => ({
+    x: offsetX + (p.x - minX) * scale,
+    y: offsetY + (p.y - minY) * scale
+  }));
+}
+
+        buildAppleTemplate();
+
+        function drawStroke(targetCtx, stroke, ai) {
+          if (!targetCtx || !canvas) return;
+          const original = stroke.original;
+          const smooth = stroke.smooth;
+          if (!original || original.length === 0) return;
+
+          const len = original.length;
+          const tNorm = ai / 100;
+          const smoothWeight = Math.min(tNorm * 1.2, 1);
+          let idealWeight = 0;
+          if (tNorm > 0.2) idealWeight = (tNorm - 0.2) / 0.8;
+          if (idealWeight < 0) idealWeight = 0;
+          if (idealWeight > 1) idealWeight = 1;
+
+          targetCtx.beginPath();
+
+          for (let i = 0; i < len; i++) {
+            const o = original[i];
+            const s = smooth[i] || original[i];
+
+            const bx = o.x + (s.x - o.x) * smoothWeight;
+            const by = o.y + (s.y - o.y) * smoothWeight;
+
+            let x = bx;
+            let y = by;
+
+            if (applePoints.length > 1) {
+              const tt = len > 1 ? i / (len - 1) : 0;
+              const pos = tt * (applePoints.length - 1);
+              const i0 = Math.floor(pos);
+              const i1 = Math.min(applePoints.length - 1, i0 + 1);
+              const a = pos - i0;
+              const ap0 = applePoints[i0];
+              const ap1 = applePoints[i1];
+              const ax = ap0.x + (ap1.x - ap0.x) * a;
+              const ay = ap0.y + (ap1.y - ap0.y) * a;
+              x = bx + (ax - bx) * idealWeight;
+              y = by + (ay - by) * idealWeight;
+            }
+
+            if (i === 0) targetCtx.moveTo(x, y);
+            else targetCtx.lineTo(x, y);
+          }
+          targetCtx.stroke();
+        }
+
+        function redraw(ai) {
+          currentAI = ai;
+          if (ctx && canvas) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.lineJoin = "round";
+            ctx.lineCap = "round";
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = "#000000";
+
+            strokes.forEach(function (stroke) {
+              drawStroke(ctx, stroke, ai);
+            });
+
+            if (drawing && currentStroke.length > 0) {
+              const temp = {
+                original: currentStroke,
+                smooth: currentStroke
+              };
+              drawStroke(ctx, temp, ai);
+            }
+          }
+
+          if (ctxInv && canvasInv) {
+            ctxInv.clearRect(0, 0, canvasInv.width, canvasInv.height);
+            ctxInv.lineJoin = "round";
+            ctxInv.lineCap = "round";
+            ctxInv.lineWidth = 3;
+            ctxInv.strokeStyle = "#000000";
+
+            strokes.forEach(function (stroke) {
+              drawStroke(ctxInv, stroke, ai);
+            });
+
+            if (drawing && currentStroke.length > 0) {
+              const temp = {
+                original: currentStroke,
+                smooth: currentStroke
+              };
+              drawStroke(ctxInv, temp, ai);
+            }
+          }
+        }
+
+        if (canvas && ctx) {
+          canvas.addEventListener("pointerdown", function (e) {
+            drawing = true;
+            currentStroke = [];
+            currentStroke.push(getPos(e));
+
+             // ▼ 첫 선을 그리기 시작한 순간의 개입도
+            if (s2_aiAtFirstStroke === null) {
+              s2_aiAtFirstStroke = currentAI;
+            }
+            
+            redraw(currentAI);
+            e.preventDefault();
+          });
+
+          window.addEventListener("pointermove", function (e) {
+            if (!drawing) return;
+            currentStroke.push(getPos(e));
+            redraw(currentAI);
+          });
+
+          window.addEventListener("pointerup", function () {
+            if (!drawing) return;
+            drawing = false;
+            const original = currentStroke.slice();
+            const smooth = makeSmoothStroke(original);
+            strokes.push({ original: original, smooth: smooth });
+            currentStroke = [];
+            if (original.length > 5) {
+              hasDrawing = true;
+              updateNextButton();
+            }
+            redraw(currentAI);
+          });
+        }
+
+        function getTrackRect() {
+          return (line || bar).getBoundingClientRect();
+        }
+        function getStageRect() {
+          return stage.getBoundingClientRect();
+        }
+
+        function applyScreenX(screenXpx) {
+          const trackRect = getTrackRect();
+          const stageRect = getStageRect();
+          const centerY = trackRect.top + trackRect.height / 2;
+
+          knob.style.left = screenXpx - stageRect.left + "px";
+          knob.style.top = centerY - stageRect.top + "px";
+
+          const splitPercent =
+            ((screenXpx - stageRect.left) / stageRect.width) * 100;
+          root.style.setProperty("--split", splitPercent);
+          root.style.setProperty("--split_vw", screenXpx + "px");
+          knob.setAttribute("aria-valuenow", String(Math.round(splitPercent)));
+
+          redraw(splitPercent);
+        }
+
+        function percentToScreenX(percent) {
+          const track = getTrackRect();
+          const ratio = percent / 100;
+          return track.left + track.width * ratio;
+        }
+
+        function setFromClientX(clientX) {
+          const r = getTrackRect();
+          const x = Math.min(Math.max(clientX - r.left, 0), r.width);
+          const ratio = x / r.width;
+          const percent = Math.round(ratio * 100);
+          const screenX = percentToScreenX(percent);
+          applyScreenX(screenX);
+        }
+
+        function setSplit(percent) {
+          const p = Math.min(100, Math.max(0, Math.round(percent)));
+          const screenX = percentToScreenX(p);
+          applyScreenX(screenX);
+        }
+
+        let dragging = false;
+
+        function onDown(e) {
+          dragging = true;
+          const p = e.touches ? e.touches[0] : e;
+          setFromClientX(p.clientX);
+          e.preventDefault();
+        }
+        function onMove(e) {
+          if (!dragging) return;
+          const p = e.touches ? e.touches[0] : e;
+          setFromClientX(p.clientX);
+        }
+        function onUp() {
+          if (!dragging) return;
+          dragging = false;
+        }
+
+        knob.addEventListener("mousedown", onDown);
+        window.addEventListener("mousemove", onMove);
+        window.addEventListener("mouseup", onUp);
+
+        knob.addEventListener("touchstart", onDown, { passive: false });
+        window.addEventListener("touchmove", onMove, { passive: false });
+        window.addEventListener("touchend", onUp);
+
+        knob.addEventListener("keydown", function (e) {
+          const cur =
+            parseFloat(
+              getComputedStyle(root).getPropertyValue("--split")
+            ) || 0;
+          let next = cur;
+          if (e.key === "ArrowLeft") next = Math.max(0, cur - 1);
+          if (e.key === "ArrowRight") next = Math.min(100, cur + 1);
+          if (e.key === "Home") next = 0;
+          if (e.key === "End") next = 100;
+          if (next !== cur) {
+            setSplit(next);
+            e.preventDefault();
+          }
+        });
+
+        function syncFromVar() {
+          const cur =
+            parseFloat(
+              getComputedStyle(root).getPropertyValue("--split")
+            ) || 0;
+          setSplit(cur);
+        }
+
+        window.addEventListener("resize", syncFromVar);
+        window.addEventListener("orientationchange", syncFromVar);
+
+        syncFromVar();
+
+        let initSplit = parseFloat(
+          getComputedStyle(root).getPropertyValue("--split")
+        );
+        if (Number.isNaN(initSplit)) {
+          initSplit = 0;   
+        }
+        redraw(initSplit);
+
+        const cursorEl = document.querySelector(".draw-cursor");
+
+window.addEventListener("pointermove", function (e) {
+  if (!cursorEl) return;
+
+  const CURSOR_OFFSET_X = 8;  // 오른쪽으로 8px 밀어져 보이면 값 줄이거나 늘려보기
+  const CURSOR_OFFSET_Y = 8;  // 아래로 8px 어긋나보이면 여기 조절
+
+  const x = e.clientX - CURSOR_OFFSET_X;
+  const y = e.clientY - CURSOR_OFFSET_Y;
+
+  cursorEl.style.left = x + "px";
+  cursorEl.style.top  = y + "px";
+
+  const splitX =
+    parseFloat(
+      getComputedStyle(root).getPropertyValue("--split_vw")
+    ) || window.innerWidth / 2;
+
+  if (e.clientX > splitX) {
+    cursorEl.classList.add("inverted");
+  } else {
+    cursorEl.classList.remove("inverted");
+  }
+});
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const intro = document.getElementById('stage2-intro');
+        if (!intro) return;
+    
+        const startArea = intro.querySelector('.intro-start-wrapper');
+        if (!startArea) return;
+    
+        startArea.addEventListener('click', function () {
+          intro.classList.add('is-hidden');
+        });
+      })();
+    </script>
+  </body>
+</html>
